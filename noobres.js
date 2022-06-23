@@ -13,7 +13,7 @@ module.exports = function(RED) {
     }
 	
 	function soma(a, b){
-        return a + b
+        return Number(a) + Number(b)
     }
 		
     RED.nodes.registerType("noobres",noobres);
