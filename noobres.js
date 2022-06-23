@@ -4,7 +4,7 @@ module.exports = function(RED) {
         var node = this;
         const n_a = config.na;
         const n_b = config.nb;
-        const lista = config.se;
+        const lista = config.editor;
 
         node.on('input', function(msg) {
             msg.payload = msg.payload.toLowerCase();
