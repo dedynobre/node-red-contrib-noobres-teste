@@ -4,10 +4,12 @@ module.exports = function(RED) {
         var node = this;
         const n_a = config.na;
         const n_b = config.nb;
+        const lista = config.se;
 
         node.on('input', function(msg) {
             msg.payload = msg.payload.toLowerCase();
-            msg.topic = soma(n_a, n_b)
+            msg.topic = soma(n_a, n_b);
+            msg.tags = lista;
             node.send(msg); 
         });
 

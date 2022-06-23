@@ -15,7 +15,7 @@
         },
         oneditprepare() {
             this.editor = RED.editor.createEditor({
-                id: 'node-input-source-editor',
+                id: 'node-input-se',
                 mode: 'ace/mode/text',
                 value: this.source
             })
@@ -31,7 +31,7 @@
             this.editor.destroy()
             delete this.editor
         }
-        
+
     });
 </script>
 
@@ -52,15 +52,9 @@
         <input type="text" id="node-input-nb" placeholder="Numero-B">
     </div>
 
-    <div class="form-row noobres">
-        <a href="#" class="editor-button editor-button-small" id="node-input-add-option" style="margin-top: 4px;"><i class="fa fa-plus"></i> <span>add</span></a>
-        <a href="#" class="editor-button editor-button-small" id="node-input-show-dynamic" style="margin-top: 4px;"><i class="fa fa-table"></i> <span>view dynamic schedules</span></a>
-        <button type="button" class="red-ui-button red-ui-button-small">Button</button>
-    </div>
-
     <div class="form-row node-text-editor-row" style="position:relative">
         <div style="height: 220px; min-height:150px;" class="node-text-editor"
-             id="node-input-source-editor" >
+             id="node-input-se" >
         </div>
     </div>
 
