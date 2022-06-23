@@ -13,15 +13,25 @@
         label: function() {
             return this.name||"noobres";
         },
-        oneditsave: function() {
-            this.exampleText = this.editor.getValue();
-            this.editor.destroy();
-            delete this.editor;
+        oneditprepare() {
+            this.editor = RED.editor.createEditor({
+                id: 'node-input-source-editor',
+                mode: 'ace/mode/text',
+                value: this.source
+            })
         },
-        oneditcancel: function() {
-            this.editor.destroy();
-            delete this.editor;
+
+        oneditsave() {
+            this.source = this.editor.getValue()
+            this.editor.destroy()
+            delete this.editor
         },
+
+        oneditcancel() {
+            this.editor.destroy()
+            delete this.editor
+        }
+        
     });
 </script>
 
@@ -48,7 +58,11 @@
         <button type="button" class="red-ui-button red-ui-button-small">Button</button>
     </div>
 
-    <div style="height: 250px; min-height:150px;" class="node-text-editor" id="node-input-example-editor"></div>
+    <div class="form-row node-text-editor-row" style="position:relative">
+        <div style="height: 220px; min-height:150px;" class="node-text-editor"
+             id="node-input-source-editor" >
+        </div>
+    </div>
 
 
 
