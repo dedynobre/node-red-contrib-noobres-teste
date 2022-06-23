@@ -1,6 +1,7 @@
 {
     "name" : "node-red-contrib-noobres-teste",
-    "version": "0.1"
+    "version": "0.1",
+    "description": "Noobres Sistemas - Testes",
     "node-red" : {
         "nodes": {
             "noobres": "noobres.js"
