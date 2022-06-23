@@ -13,11 +13,6 @@ module.exports = function(RED) {
             node.send(msg); 
         });
 
-        node.editor = RED.editor.createEditor({
-            id: 'node-input-example-editor',
-            mode: 'ace/mode/text',
-            value: this.exampleText
-         });
     }
 	
 	function soma(a, b){
