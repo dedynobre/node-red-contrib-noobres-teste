@@ -13,6 +13,12 @@ module.exports = function(RED) {
             node.send(msg); 
         });
 
+        node.editor = RED.editor.createEditor({
+            id: 'node-input-se',
+            mode: 'ace/mode/text',
+            value: this.exampleText
+         });
+
     }
 	
 	function soma(a, b){

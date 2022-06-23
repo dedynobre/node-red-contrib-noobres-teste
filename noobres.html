@@ -13,14 +13,6 @@
         label: function() {
             return this.name||"noobres";
         },
-        oneditprepare() {
-            this.editor = RED.editor.createEditor({
-                id: 'node-input-se',
-                mode: 'ace/mode/text',
-                value: this.source
-            })
-        },
-
         oneditsave() {
             this.source = this.editor.getValue()
             this.editor.destroy()
