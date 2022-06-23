@@ -7,7 +7,7 @@ module.exports = function(RED) {
 
         node.on('input', function(msg) {
             msg.payload = msg.payload.toLowerCase();
-            msg.topic = soma(111,222) || 0
+            msg.topic = soma(n_a, n_b) || 0
             node.send(msg); 
         });
     }
