@@ -12,7 +12,16 @@
         icon: "file.png",
         label: function() {
             return this.name||"noobres";
-        }
+        },
+        oneditsave: function() {
+            this.exampleText = this.editor.getValue();
+            this.editor.destroy();
+            delete this.editor;
+        },
+        oneditcancel: function() {
+            this.editor.destroy();
+            delete this.editor;
+        },
     });
 </script>
 
