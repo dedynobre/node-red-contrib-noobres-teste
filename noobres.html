@@ -1,0 +1,32 @@
+<script type="text/javascript">
+    RED.nodes.registerType('noobres',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"noobres";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="lower-case">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+
+        <label for="node-input-na"><i class="fa fa-tag"></i> Numero a(A)</label>
+        <input type="text" id="node-input-na" placeholder="Name">
+
+        <label for="node-input-nb"><i class="fa fa-tag"></i> Numero b(B)</label>
+        <input type="text" id="node-input-nb" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="lower-case">
+    <p>Segundo Node Noobres Sistemas</p>
+</script>
