@@ -1,11 +1,12 @@
 <script type="text/javascript">
     RED.nodes.registerType('noobres',{
-        category: 'noobres-sistemas',
-        color: '#a6bbcf',
+        category: 'noobres',
+        color: '#FFCC66',
         defaults: {
             name: {value:""},
             na: {value:0},
-            nb: {value:0}
+            nb: {value:0},
+            groupitems: {value: []},
         },
         inputs:1,
         outputs:1,
@@ -13,23 +14,57 @@
         label: function() {
             return this.name||"noobres";
         },
-        oneditprepare() {
-            this.editor = RED.editor.createEditor({
-                id: 'node-input-source-editor',
-                mode: 'ace/mode/text',
-                value: this.source
-            })
-        },
-        oneditsave() {
-            this.source = this.editor.getValue()
-            this.editor.destroy()
-            delete this.editor
+
+        oneditcancel: function(){
+            //console.log('cancelando')
         },
 
-        oneditcancel() {
-            this.editor.destroy()
-            delete this.editor
-        }
+        oneditprepare: function() {
+            let self = this;
+
+            let b_add = $("#node-btn-item-add")
+            let b_rem = $("#node-btn-item-remove")
+            let i_area = $("#node-input-items");
+            
+            if(typeof self.groupitems != 'undefined'){
+                self.groupitems.forEach(function(item) {addGroupItem(item)}); 
+            }
+            
+            b_rem.click(function(){
+				i_area.empty();
+			});
+
+            b_add.click(function(){
+				var item = $("#node-field-item-add").val();
+				if(item){
+					addGroupItem(item);
+				}
+			});
+
+            function addGroupItem(item){
+				var b_rem = $("<button class='node-btn-group-item-remove' style='position:absolute; right:10px; color:#888; border:0; background:none'><i class='fa fa-times' aria-hidden='true'></i></button>");
+				var item = $("<li><span>"+ item + "</span></li>").css({"border":"1px solid #cccccc", "padding" : "10px 0 10px 10px", "margin-top" : "2px", "position":"relative"});
+				item.append(b_rem);
+				
+				b_rem.click(function(){
+					$(this).parent().remove();
+				});
+				
+				i_area.append(item);
+				i_area.css({"list-style-position":"inside","margin":"0"});
+			};
+
+        },
+
+        oneditsave: function(){
+			let self = this;
+			
+			self.groupitems = [];
+			var items = $('#node-input-items').children('li');
+			items.each(function (i) {
+				self.groupitems.push($(this).text());
+			});
+		}
 
     });
 </script>
@@ -51,11 +86,22 @@
         <input type="text" id="node-input-nb" placeholder="Numero-B">
     </div>
 
-    <div class="form-row node-text-editor-row" style="position:relative">
-        <div style="height: 220px; min-height:150px;" class="node-text-editor"
-             id="node-input-source-editor" >
-        </div>
+    <div class="form-row noobres">
+        <label for="node-input-add-i"><i class="fa fa-list"></i> Add Items:</label>
     </div>
+
+	<div class="form-row">
+		<button class="editor-button" id="node-btn-item-remove"><i class="fa fa-trash"></i> Remove All</button>
+	</div>
+
+	<div class="form-row" style="margin-bottom:0;">
+		<input type="text" id="node-field-item-add">
+		<button class="editor-button" id="node-btn-item-add"><i class="fa fa-plus"></i></button>
+	</div>
+
+	<div class="form-row node-input-item-container-row">
+		<ol id="node-input-items" style="list-style-position:inside; margin:0; padding: 5px; height: 300px; border:1px solid #cccccc; overflow:scroll"></ol>
+	</div>
 
 
 

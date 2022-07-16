@@ -4,14 +4,19 @@ module.exports = function(RED) {
         var node = this;
         const n_a = config.na;
         const n_b = config.nb;
-        const lista = config.editor;
+        const lista = config.groupitems;
 
         node.on('input', function(msg) {
-            msg.payload = msg.payload.toLowerCase();
-            msg.topic = soma(n_a, n_b);
-            msg.tags = lista;
+            msg.payload = soma(n_a, n_b);
+            msg.lista = lista;
             node.send(msg); 
         });
+
+        node.status({
+            text: 'OK',
+            shape: 'dot',
+            fill: 'blue'
+        })
 
     }
 	
